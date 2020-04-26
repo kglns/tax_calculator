@@ -3,11 +3,9 @@ from pandas import DataFrame
 from copy import deepcopy
 class TaxCalculator(object):
     def __init__(self, tax_brackets):
-        self.tax_brackets = OrderedDict(tax_brackets)
-        self.message = 'Welcome to TaxCalculator'
+        self.tax_brackets = OrderedDict(sorted(tax_brackets.items()))
     
     def run(self, gross_income):
-        print(self.message)
         original_gross_income = deepcopy(gross_income)
         tax_owed = 0
         table = []

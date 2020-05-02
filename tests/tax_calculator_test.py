@@ -11,5 +11,13 @@ def test_lowest_bracket():
     res = tc.run(6000)
     assert(res["summary"]["tax_owed"] == 600)
 
+def test_second_bracket():
+    res = tc.run(12000)
+    assert(res["summary"]["tax_owed"] == 700 + (5000*0.2))
+
+def test_third_bracket():
+    res = tc.run(23000)
+    assert(res["summary"]["tax_owed"] == 700 + (15000*0.2) + (1000*0.25))
+
 def test_returns_gross_income_error():
     assert(tc.run(-1) == {"error": "Gross income must be greater than 0"})

@@ -2,7 +2,6 @@ import pprint
 from collections import OrderedDict
 from pandas import DataFrame
 from copy import deepcopy
-
 '''
 Given a dictionary of tax brackets, calculate tax owed for each bracket and add them up
 The highest bracket must have a large number such as 1e15
@@ -42,6 +41,6 @@ class TaxCalculator(object):
 
         return result
 
-if __name__ == '__main__':
-    tc = TaxCalculator({10: 7000, 20: 15000, 25: 20000, 30: 40000, 35: 140000, 40: 1e15})
-    pprint.pprint(tc.run(140000))
+# if __name__ == '__main__':
+#     tc = TaxCalculator({10: 7000, 20: 15000, 25: 20000, 30: 40000, 35: 140000, 40: 1e15})
+#     pprint.pprint(tc.run(140000))

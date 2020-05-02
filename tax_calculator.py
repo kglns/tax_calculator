@@ -15,6 +15,8 @@ class TaxCalculator(object):
         original_gross_income = deepcopy(gross_income)
         tax_owed = 0
         table, result = [], {}
+        if gross_income < 0:
+            return {"error": "Gross income must be greater than 0"}
         for percent, cutoff in self.tax_brackets.items():
             if gross_income < 1:
                 break
@@ -40,7 +42,3 @@ class TaxCalculator(object):
         })
 
         return result
-
-# if __name__ == '__main__':
-#     tc = TaxCalculator({10: 7000, 20: 15000, 25: 20000, 30: 40000, 35: 140000, 40: 1e15})
-#     pprint.pprint(tc.run(140000))

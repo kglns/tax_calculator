@@ -8,9 +8,17 @@ The highest bracket must have a large number such as 1e15
 e.g. >> TaxCalculator({10: 7000, 20: 15000, 25: 20000, 30: 40000, 35: 140000, 40: 1e15})
 '''
 class TaxCalculator(object):
-    def __init__(self, tax_brackets):
-        self.tax_brackets = OrderedDict(sorted(tax_brackets.items()))
+    def __init__(self, input_brackets):
+        self.input_brackets = input_brackets
+        self.tax_brackets = self.calculate_bracket_thresholds()
     
+    def calculate_bracket_thresholds(self):
+        final = {}
+        for k,v in self.input_brackets.items():
+            low, high = [float(n) for n in v.split("-")]
+            final[k] = high - low
+        return OrderedDict(sorted(final.items()))
+
     def run(self, gross_income):
         original_gross_income = deepcopy(gross_income)
         tax_owed = 0
